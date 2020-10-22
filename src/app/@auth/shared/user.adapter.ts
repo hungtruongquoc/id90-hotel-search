@@ -10,7 +10,11 @@ export class UserAdapter implements ModelAdapter<User> {
       item.name,
       item.lastname,
       item.role,
-      item.token
+      item.token,
+      null,
+      null,
+      null,
+      item.access_token
     );
   }
   encode(item: User) {
@@ -22,6 +26,8 @@ export class UserAdapter implements ModelAdapter<User> {
       lastname: item.lastname,
       role: item.role,
       toke: item.token,
+      airline: item.airline ? item.airline : null,
+      employee_number: item.username
     };
   }
 }

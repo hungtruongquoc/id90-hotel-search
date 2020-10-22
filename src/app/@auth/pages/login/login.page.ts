@@ -1,29 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@app/@auth/shared/auth.service';
-import { PathMap } from '@app/@core/enums';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '@app/@auth/shared/auth.service';
+import {PathMap} from '@app/@core/enums';
+import {Store} from '@ngrx/store';
+import {getAllAirlines, selectAirlineList} from '@core/store';
+import {Observable, Subscription} from 'rxjs';
+import {AirlineModel} from '@core/services/airline/airline.model';
+import {logUserIn, selectIsLoggedIn} from '@app/@auth/store';
 
 @Component({
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
   returnUrl: string;
+  public airlines$: Observable<AirlineModel[]>;
+  private readonly loginSubscription: Subscription = null;
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService,
+              private store: Store
   ) {
-    this.returnUrl =
-      this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Home}`;
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Home}`;
+    this.airlines$ = this.store.select(selectAirlineList) as Observable<AirlineModel[]>;
+    this.loginSubscription = this.store.select(selectIsLoggedIn).subscribe(value => {
+      if (value) {
+        this.router.navigate([this.returnUrl]);
+      }
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(getAllAirlines());
+  }
 
-  // onSubmit(username, password) {
-  //   this.authService
-  //     .login(username, password)
-  //     .subscribe((data) => this.router.navigate([this.returnUrl]));
-  // }
+  ngOnDestroy() {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+  }
+
+  onSubmit({username, password}) {
+    this.store.dispatch(logUserIn({username, password, airline: 'f9'}));
+  }
+
+
 }
