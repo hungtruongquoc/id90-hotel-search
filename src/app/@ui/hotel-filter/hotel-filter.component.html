@@ -1,0 +1,29 @@
+<div class="search-criteria-container" style="margin-bottom: 10px">
+  <div nz-row [nzGutter]="8" class="search-label-container">
+    <div nz-col [nzSpan]="6">
+      <h6>Destination</h6>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <h6>Check In - Check Out Date/Time</h6>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <h6># of Guests</h6>
+    </div>
+    <div nz-col [nzSpan]="6">
+    </div>
+  </div>
+  <div nz-row [nzGutter]="8" class="search-control-container">
+    <div nz-col [nzSpan]="6">
+      <input nz-input placeholder="City, State, or Zipcode" [(ngModel)]="destination"/>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-range-picker [(ngModel)]="date"></nz-range-picker>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <app-guest-select (valueChanged)="updateGuestCount($event)"></app-guest-select>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <button nz-button nzType="primary" nzBlock (click)="emitSearchClicked()">Search</button>
+    </div>
+  </div>
+</div>

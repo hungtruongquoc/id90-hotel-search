@@ -1,7 +1,7 @@
 import {GenericHttpService} from '@core/services';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '@environments/environment';
-import {AirlineAdapter} from '@core/services/airline/airline.adapter';
+import {AirlineAdapter} from './airline.adapter';
 import {Injectable} from '@angular/core';
 
 @Injectable()

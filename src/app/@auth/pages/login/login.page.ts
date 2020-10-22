@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '@app/@auth/shared/auth.service';
 import {PathMap} from '@app/@core/enums';
 import {Store} from '@ngrx/store';
-import {getAllAirlines, selectAirlineList} from '@core/store';
+import {getAllAirlines, selectAirlineList} from '@core/store/airline.reducer';
 import {Observable, Subscription} from 'rxjs';
 import {AirlineModel} from '@core/services/airline/airline.model';
 import {logUserIn, selectIsLoggedIn} from '@app/@auth/store';
@@ -20,7 +20,7 @@ export class LoginPage implements OnInit, OnDestroy {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService,
               private store: Store
   ) {
-    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Home}`;
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Hotel}`;
     this.airlines$ = this.store.select(selectAirlineList) as Observable<AirlineModel[]>;
     this.loginSubscription = this.store.select(selectIsLoggedIn).subscribe(value => {
       if (value) {

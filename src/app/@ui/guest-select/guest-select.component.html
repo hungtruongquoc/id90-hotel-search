@@ -1,0 +1,3 @@
+<nz-select [(ngModel)]="countValue" [nzDropdownMatchSelectWidth]="false" (ngModelChange)="emitSelectedValue($event)">
+  <nz-option [nzValue]="count" [nzLabel]="count.toString()" *ngFor="let count of guestCountList"></nz-option>
+</nz-select>

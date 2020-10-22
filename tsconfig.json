@@ -6,6 +6,7 @@
 */
 {
   "files": [],
+  "types": [ "googlemaps"],
   "references": [
     {
       "path": "./tsconfig.app.json"
