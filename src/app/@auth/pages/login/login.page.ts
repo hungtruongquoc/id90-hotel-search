@@ -20,7 +20,7 @@ export class LoginPage implements OnInit, OnDestroy {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService,
               private store: Store
   ) {
-    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Home}`;
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || `/${PathMap.Hotel}`;
     this.airlines$ = this.store.select(selectAirlineList) as Observable<AirlineModel[]>;
     this.loginSubscription = this.store.select(selectIsLoggedIn).subscribe(value => {
       if (value) {

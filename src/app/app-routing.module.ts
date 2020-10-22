@@ -1,12 +1,16 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PathMap } from './@core/enums/path-map.enum';
-import { AuthGuard, NoAuthGuard } from './@core/guards';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {PathMap} from '@core/enums';
+import {AuthGuard, NoAuthGuard} from './@core/guards';
 
 const routes: Routes = [
   // ===== Uncomment if pathMap.Home is different from empty =====
-  // { path: '', redirectTo: PathMap.Home, pathMatch: 'full' },
-
+  { path: '', redirectTo: PathMap.Hotel, pathMatch: 'full' },
+  {
+    path: PathMap.Hotel,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@app/features/hotel/hotel.module').then((m) => m.HotelModule)
+  },
   // Home page
   {
     path: PathMap.Home,
@@ -14,7 +18,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('@features/home/home.module').then((m) => m.HomeModule),
   },
-
   // Auth
   {
     path: PathMap.Auth,
@@ -22,7 +25,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('@app/@auth/auth.module').then((m) => m.AuthModule),
   },
-
   // Internal server error page response
   {
     path: 'internal-server-error',
