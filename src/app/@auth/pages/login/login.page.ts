@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '@app/@auth/shared/auth.service';
 import {PathMap} from '@app/@core/enums';
 import {Store} from '@ngrx/store';
-import {getAllAirlines, selectAirlineList} from '@core/store';
+import {getAllAirlines, selectAirlineList} from '@core/store/airline.reducer';
 import {Observable, Subscription} from 'rxjs';
 import {AirlineModel} from '@core/services/airline/airline.model';
 import {logUserIn, selectIsLoggedIn} from '@app/@auth/store';

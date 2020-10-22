@@ -17,13 +17,13 @@
       <input nz-input placeholder="City, State, or Zipcode" [(ngModel)]="destination"/>
     </div>
     <div nz-col [nzSpan]="8">
-      <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
+      <nz-range-picker [(ngModel)]="date"></nz-range-picker>
     </div>
     <div nz-col [nzSpan]="4">
       <app-guest-select (valueChanged)="updateGuestCount($event)"></app-guest-select>
     </div>
     <div nz-col [nzSpan]="6">
-      <button nz-button nzType="primary" nzBlock>Search</button>
+      <button nz-button nzType="primary" nzBlock (click)="emitSearchClicked()">Search</button>
     </div>
   </div>
 </div>

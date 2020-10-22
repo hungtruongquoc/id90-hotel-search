@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {EMPTY, of} from 'rxjs';
+import {EMPTY} from 'rxjs';
 import {map, mergeMap, catchError} from 'rxjs/operators';
-import {Action} from '@ngrx/store';
-import {AirlineAction, GET_ALL_AIRLINES, UPDATE_AIRLINE_LIST} from '../index';
+import {AirlineAction, GET_ALL_AIRLINES, UPDATE_AIRLINE_LIST} from '../airline.reducer';
 import {AirlineService} from '../../services';
 import {AirlineModel} from '../../services/airline/airline.model';
 
@@ -25,3 +24,5 @@ export class AirlineEffects {
   constructor(private actions$: Actions, private airlineService: AirlineService) {
   }
 }
+
+export {HotelEffects} from './hotel';

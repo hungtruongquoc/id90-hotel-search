@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {getDefaultDateRange} from '@core/helpers';
 
 @Component({
   selector: 'app-hotel-filter',
@@ -6,21 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hotel-filter.component.scss']
 })
 export class HotelFilterComponent implements OnInit {
-  public destination: string;
-  public date: Date[];
-  public guestCount: number;
+  public destination: string = null;
+  public date = getDefaultDateRange();
+  public guestCount = 1;
+  @Output()
+  searchClicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public onChange(result: Date[]): void {
-    console.log('onChange: ', result);
-  }
-
   public updateGuestCount(guestCount: number) {
     this.guestCount = guestCount;
   }
 
+  public emitSearchClicked() {
+    const {destination, date, guestCount} = this;
+    this.searchClicked.emit({destination, checkin: date[0], checkout: date[1], guests: guestCount});
+  }
 }

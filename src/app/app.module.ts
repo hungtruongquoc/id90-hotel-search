@@ -16,11 +16,11 @@ import en from '@angular/common/locales/en';
 import {StoreModule} from '@ngrx/store';
 import {reducers, metaReducers} from './reducers';
 import {reducer as AuthenticationReducer} from './@auth/store/index';
-import {reducer as AirlineReducer} from './@core/store/index';
+import {AirlineReducer, HotelReducer} from './@core/store/index';
 import {EffectsModule} from '@ngrx/effects';
 import {AppEffects} from './app.effects';
 import {AuthenticationEffects} from '@app/@auth/store/effects';
-import {AirlineEffects} from '@core/store/effects';
+import {AirlineEffects, HotelEffects} from '@core/store/effects';
 import {AgmCoreModule} from '@agm/core';
 
 declare const google: any;
@@ -41,8 +41,8 @@ registerLocaleData(en);
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({authentication: AuthenticationReducer, airline: AirlineReducer}),
-    EffectsModule.forRoot([AppEffects, AuthenticationEffects, AirlineEffects]),
+    StoreModule.forRoot({authentication: AuthenticationReducer, airline: AirlineReducer, hotel: HotelReducer}),
+    EffectsModule.forRoot([AppEffects, AuthenticationEffects, AirlineEffects, HotelEffects]),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDJcDQhLYPK-ewnnEA3j9FsLN9Ae5cRhhg'})
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],

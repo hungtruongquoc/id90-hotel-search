@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {getAllHotels} from '@core/store/hotel.reducer';
+import {format} from 'date-fns';
 
 @Component({
   selector: 'app-hotel-index',
@@ -7,20 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelIndexComponent implements OnInit {
 
-  public destination;
-  public guestCount: number;
-  public date: Date[];
-
-  constructor() { }
+  constructor(public store: Store) { }
 
   ngOnInit(): void {
   }
 
-  public onChange(result: Date[]): void {
-    console.log('onChange: ', result);
-  }
-
-  public updateGuestCount(guestCount: number) {
-    this.guestCount = guestCount;
+  getHotelList(params) {
+    const newParams = {...params};
+    newParams.checkin = format(params.checkin, 'yyyy-MM-dd');
+    newParams.checkout = format(params.checkout, 'yyyy-MM-dd');
+    newParams.destination = 'New York';
+    this.store.dispatch(getAllHotels(newParams));
   }
 }

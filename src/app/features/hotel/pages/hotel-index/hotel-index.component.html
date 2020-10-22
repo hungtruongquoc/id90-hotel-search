@@ -1,6 +1,6 @@
 <div nz-row>
   <div nz-col [nzSpan]="16" [nzOffset]="4">
-    <app-hotel-filter></app-hotel-filter>
+    <app-hotel-filter (searchClicked)="getHotelList($event)" ></app-hotel-filter>
     <div nz-row class="result-list-container" [nzGutter]="8">
       <div nz-col [nzSpan]="6">
         <h5>Hotel List</h5>
