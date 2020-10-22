@@ -1,0 +1,7 @@
+<div *ngIf="!hotels || hotels.length < 1 else hotelList">
+No hotel found. <br/> Please provide your destination (city, state, or zipcode) and click 'Search'
+</div>
+<ng-template #hotelList>
+Has some hotels
+</ng-template>
+

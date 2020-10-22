@@ -13,9 +13,14 @@ export class HotelFilterComponent implements OnInit {
   @Output()
   searchClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  public get hasAddress() {
+    return null !== this.destination && '' !== this.destination && ' ' !== this.destination && this.destination.length > 1;
   }
 
   public updateGuestCount(guestCount: number) {

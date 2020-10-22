@@ -10,10 +10,11 @@ import {FormsModule} from '@angular/forms';
 import {GuestSelectComponent, HotelFilterComponent} from '../../@ui';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {AgmCoreModule} from '@agm/core';
+import {HotelListComponent} from '../../@ui/hotel-list/hotel-list.component';
 // import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
-  declarations: [HotelIndexComponent, GuestSelectComponent, HotelFilterComponent],
+  declarations: [HotelIndexComponent, GuestSelectComponent, HotelFilterComponent, HotelListComponent],
   imports: [
     CommonModule,
     HotelRoutingModule,

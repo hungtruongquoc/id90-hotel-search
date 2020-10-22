@@ -18,13 +18,22 @@ export class GenericHttpService<T> implements GenericHttp<T> {
       .set('Accept', 'application/json');
   }
 
-  getAll(args?: { httpParams?: HttpParams; extra?: string }): Observable<T[]> {
+  getAllRawResponse(args?: { httpParams?: HttpParams; extra?: string; }): Observable<any> {
+    const { httpParams, extra } = Object(args);
+    const url = `${this.baseUrl}/${this.endpoint}/${extra || ''}`;
+
+    return this.httpClient.get<T[]>(url, { params: httpParams });
+  }
+
+  getAll(args?: { httpParams?: HttpParams; extra?: string; }): Observable<T[]> {
     const { httpParams, extra } = Object(args);
     const url = `${this.baseUrl}/${this.endpoint}/${extra || ''}`;
 
     return this.httpClient
       .get<T[]>(url, { params: httpParams })
-      .pipe(map((data) => this.convertList(data)));
+      .pipe(map((data) => {
+        return this.convertList(data);
+      }));
   }
 
   getById(id: string): Observable<T> {
@@ -68,6 +77,7 @@ export class GenericHttpService<T> implements GenericHttp<T> {
   }
 
   protected convertList(data: any): T[] {
+    debugger;
     return data?.map((item) => this.modelAdapter.adapt(item));
   }
 }
