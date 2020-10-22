@@ -7,6 +7,9 @@ export class User {
     public name: string,
     public lastname: string,
     public role: string,
-    public token?: string
+    public token?: string,
+    public airline?: string,
+    public employeeNumber?: string,
+    public accessToken?: string
   ) {}
 }

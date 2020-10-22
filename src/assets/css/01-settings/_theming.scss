@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: dark) {
   /* defaults to dark theme */
   .app {
-    @include apply-theme(dark);
+    @include apply-theme(light);
     filter: brightness(0.8) contrast(1.2);
   }
 }

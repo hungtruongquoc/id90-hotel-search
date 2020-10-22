@@ -1,1 +1,7 @@
-<app-login-form></app-login-form>
+<div nz-row>
+  <div nz-col nzSpan="8" nzOffset="8">
+    <h5>Airline</h5>
+    <app-airline-select [airlineList]="airlines$ | async" selectedAirline="f9"></app-airline-select>
+    <app-login-form (formSubmitted)="onSubmit($event)"></app-login-form>
+  </div>
+</div>

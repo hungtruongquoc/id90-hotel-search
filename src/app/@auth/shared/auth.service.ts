@@ -5,7 +5,9 @@ import { environment } from '@environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserAdapter } from './user.adapter';
-import { User } from './user.model';
+import { User } from '@app/@auth';
+import {Store} from '@ngrx/store';
+import {updateUserAuthentication} from "@app/@auth/store";
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +15,17 @@ import { User } from './user.model';
 export class AuthService extends GenericHttpService<Partial<User>> {
   private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient, environment.apiUrl, 'auth', new UserAdapter());
+  constructor(httpClient: HttpClient, private store: Store) {
+    super(httpClient, environment.apiUrl, 'api/v1/sessions', new UserAdapter());
+
+    const userInfo = localStorage.getItem('currentUser');
+
+    if (userInfo && JSON.parse(userInfo).accessToken) {
+      this.store.dispatch(updateUserAuthentication({isLoggedIn: !!JSON.parse(userInfo).accessToken}));
+    }
 
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser'))
+      JSON.parse(userInfo)
     );
   }
 
@@ -25,8 +33,8 @@ export class AuthService extends GenericHttpService<Partial<User>> {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    return super.post({ username, password }, 'login').pipe(
+  login(username: string, password: string, airline: string) {
+    return super.post({ username, password, airline }, null).pipe(
       map((user) => {
         // Store user details and jwt token in local storage
         // to keep user logged in between page refreshes

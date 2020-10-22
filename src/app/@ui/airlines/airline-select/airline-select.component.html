@@ -1,0 +1,3 @@
+<nz-select [(ngModel)]="selectedAirline">
+  <nz-option *ngFor="let airline of airlineList" [nzValue]="airline.code" [nzLabel]="airline.displayName"></nz-option>
+</nz-select>
