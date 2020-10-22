@@ -21,6 +21,9 @@ import {EffectsModule} from '@ngrx/effects';
 import {AppEffects} from './app.effects';
 import {AuthenticationEffects} from '@app/@auth/store/effects';
 import {AirlineEffects} from '@core/store/effects';
+import {AgmCoreModule} from '@agm/core';
+
+declare const google: any;
 
 registerLocaleData(en);
 
@@ -39,7 +42,8 @@ registerLocaleData(en);
     ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({authentication: AuthenticationReducer, airline: AirlineReducer}),
-    EffectsModule.forRoot([AppEffects, AuthenticationEffects, AirlineEffects])
+    EffectsModule.forRoot([AppEffects, AuthenticationEffects, AirlineEffects]),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDJcDQhLYPK-ewnnEA3j9FsLN9Ae5cRhhg'})
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent],

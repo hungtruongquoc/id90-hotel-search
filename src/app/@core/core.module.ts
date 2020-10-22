@@ -3,7 +3,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {GlobalErrorHandler} from './handlers';
 import {JwtInterceptor, ServerErrorInterceptor} from './interceptors';
-import {AirlineService} from "@core/services";
+import {AirlineService} from '@core/services';
 
 @NgModule({
   declarations: [],

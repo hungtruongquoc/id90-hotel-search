@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-hotel-index',
-  templateUrl: './hotel-index.component.html',
-  styleUrls: ['./hotel-index.component.scss']
+  selector: 'app-hotel-filter',
+  templateUrl: './hotel-filter.component.html',
+  styleUrls: ['./hotel-filter.component.scss']
 })
-export class HotelIndexComponent implements OnInit {
-
-  public destination;
-  public guestCount: number;
+export class HotelFilterComponent implements OnInit {
+  public destination: string;
   public date: Date[];
+  public guestCount: number;
 
   constructor() { }
 
@@ -23,4 +22,5 @@ export class HotelIndexComponent implements OnInit {
   public updateGuestCount(guestCount: number) {
     this.guestCount = guestCount;
   }
+
 }
