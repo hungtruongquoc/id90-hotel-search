@@ -2,6 +2,13 @@
   No hotel found. <br/> Please provide your destination (city, state, or zipcode) and click 'Search'
 </div>
 <ng-template #hotelList>
+  <div class="list-container" style="height: 500px; overflow-y: auto">
+    <nz-list nzItemLayout="horizontal">
+      <nz-list-item *ngFor="let hotel of hotels">
+        <span>{{hotel.name}}</span>
+      </nz-list-item>
+    </nz-list>
+  </div>
   <nz-pagination [nzPageIndex]="metaInfo.page" [nzTotal]="totalRecordCount"
                  (nzPageIndexChange)="emitPageChangedEvent($event)"
                  [nzPageSize]="pageSize" [nzShowTotal]="totalTemplate"></nz-pagination>

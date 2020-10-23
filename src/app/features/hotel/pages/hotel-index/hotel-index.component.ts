@@ -39,9 +39,9 @@ export class HotelIndexComponent implements OnInit {
     this.updateHotelList();
   }
 
-  public getNewPageHotelList(pageNumber: number) {
+  public getNewPageHotelList(pageNumber?: number) {
     if (this.currentParams) {
-      this.currentParams.page = pageNumber;
+      this.currentParams.page = pageNumber ? pageNumber : 1;
     }
     this.updateHotelList();
   }

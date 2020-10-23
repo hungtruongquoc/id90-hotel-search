@@ -12,7 +12,7 @@ export class HotelService extends GenericHttpService<any> {
     super(httpClient, environment.apiUrl, 'api/v1/hotels.json', new HotelAdapter());
   }
 
-  public getAllHotels({checkin, checkout, destination, guests, lat, lng}: any): Observable<any> {
+  public getAllHotels({checkin, checkout, destination, guests, lat, lng, page}: any): Observable<any> {
     return this.getAllRawResponse({
       httpParams: new HttpParams({
         fromObject: {
@@ -26,7 +26,7 @@ export class HotelService extends GenericHttpService<any> {
           sort_criteria: 'Overall',
           sort_order: 'desc',
           per_page: '25',
-          page: '1',
+          page,
           currency: 'USD',
           price_low: null,
           price_high: null,
