@@ -1,11 +1,8 @@
 export class HotelModel {
   public displayName: string;
-  public id: number;
-  public code: string;
+  public location?: {longitude, latitude};
 
-  constructor(id: number, name: string, code: string) {
-    this.id = id;
+  constructor(public id: string, public name: string, public code: string, public lat: number, public long: number) {
     this.displayName = name;
-    this.code = code;
   }
 }

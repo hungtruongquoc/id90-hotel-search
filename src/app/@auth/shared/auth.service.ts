@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { UserAdapter } from './user.adapter';
 import { User } from '@app/@auth';
 import {Store} from '@ngrx/store';
-import {updateUserAuthentication} from "@app/@auth/store";
+import {updateUserAuthentication} from '@app/@auth/store';
 
 @Injectable({
   providedIn: 'root',

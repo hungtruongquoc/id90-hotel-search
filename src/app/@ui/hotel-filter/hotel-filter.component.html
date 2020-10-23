@@ -23,7 +23,7 @@
       <app-guest-select (valueChanged)="updateGuestCount($event)"></app-guest-select>
     </div>
     <div nz-col [nzSpan]="6">
-      <button nz-button nzType="primary" nzBlock (click)="emitSearchClicked()">Search</button>
+      <button nz-button nzType="primary" nzBlock (click)="emitSearchClicked()" [disabled]="!hasAddress">Search</button>
     </div>
   </div>
 </div>

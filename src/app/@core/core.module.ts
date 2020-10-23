@@ -5,6 +5,7 @@ import {GlobalErrorHandler} from './handlers';
 import {JwtInterceptor, ServerErrorInterceptor} from './interceptors';
 import {AirlineService} from '@core/services';
 import {HotelService} from '@core/services/hotel/hotel.service';
+import {GeocodingService} from '@core/services/geocoding.service';
 
 @NgModule({
   declarations: [],
@@ -12,6 +13,7 @@ import {HotelService} from '@core/services/hotel/hotel.service';
   providers: [
     AirlineService,
     HotelService,
+    GeocodingService,
     {provide: ErrorHandler, useClass: GlobalErrorHandler},
     {
       provide: HTTP_INTERCEPTORS,
