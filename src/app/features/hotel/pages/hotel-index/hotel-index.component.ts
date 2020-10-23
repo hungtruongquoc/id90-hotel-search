@@ -16,6 +16,7 @@ export class HotelIndexComponent implements OnInit {
   public hotelList$: Observable<HotelModel[]> = null;
   public hotelMeta$: Observable<any> = null;
   public currentParams: any = null;
+  public selectedHotel: string = null;
 
   constructor(public store: Store, public geoService: GeocodingService) { }
 
@@ -44,5 +45,9 @@ export class HotelIndexComponent implements OnInit {
       this.currentParams.page = pageNumber ? pageNumber : 1;
     }
     this.updateHotelList();
+  }
+
+  public highlightHotel(data) {
+    this.selectedHotel = data.title.split(';').pop();
   }
 }

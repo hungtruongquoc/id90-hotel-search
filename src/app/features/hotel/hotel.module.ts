@@ -14,6 +14,8 @@ import {HotelListComponent} from '../../@ui/hotel-list/hotel-list.component';
 import {NzTableModule} from 'ng-zorro-antd/table';
 import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 import {NzListModule} from 'ng-zorro-antd/list';
+import {NzIconModule} from 'ng-zorro-antd/icon';
+import {NzSpaceModule} from 'ng-zorro-antd/space';
 // import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
@@ -31,6 +33,8 @@ import {NzListModule} from 'ng-zorro-antd/list';
     NzTableModule,
     NzPaginationModule,
     NzListModule,
+    NzIconModule,
+    NzSpaceModule
     // AgmCoreModule.forRoot({apiKey: 'AIzaSyDJcDQhLYPK-ewnnEA3j9FsLN9Ae5cRhhg'})
   ]
 })

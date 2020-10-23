@@ -12,6 +12,8 @@ export class HotelListComponent implements OnInit {
   public hotels: HotelModel[] = null;
   @Input()
   public metaInfo: any = null;
+  @Input()
+  public highlightedHotel: string = null;
   @Output()
   public pageChanged: EventEmitter<number> = new EventEmitter<number>();
 
