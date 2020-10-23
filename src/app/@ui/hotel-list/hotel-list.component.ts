@@ -1,13 +1,26 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  AfterViewChecked,
+  DoCheck, OnChanges, SimpleChanges, ViewChildren, AfterContentChecked, QueryList
+} from '@angular/core';
 import {HotelModel} from '../../@core/services/hotel/hotel.model';
+import {NzListComponent, NzListItemComponent} from 'ng-zorro-antd/list';
 
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',
   styleUrls: ['./hotel-list.component.scss']
 })
-export class HotelListComponent implements OnInit {
+export class HotelListComponent implements OnInit, AfterViewChecked {
 
+  @ViewChildren(NzListItemComponent, {read: ElementRef})
+  public selectedListItems: QueryList<ElementRef>;
   @Input()
   public hotels: HotelModel[] = null;
   @Input()
@@ -19,7 +32,8 @@ export class HotelListComponent implements OnInit {
 
   public pageSize = 25;
 
-  constructor() { }
+  constructor() {
+  }
 
   public get totalRecordCount() {
     return this.metaInfo.total_pages * this.pageSize;
@@ -32,4 +46,13 @@ export class HotelListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewChecked() {
+    if (this.selectedListItems.length > 0) {
+      this.selectedListItems.forEach(item => {
+        if (item.nativeElement.className.includes('highlighted')) {
+          item.nativeElement.scrollIntoView();
+        }
+      });
+    }
+  }
 }
