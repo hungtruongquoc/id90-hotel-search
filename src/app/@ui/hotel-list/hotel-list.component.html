@@ -1,7 +1,10 @@
 <div *ngIf="!hotels || hotels.length < 1 else hotelList">
-No hotel found. <br/> Please provide your destination (city, state, or zipcode) and click 'Search'
+  No hotel found. <br/> Please provide your destination (city, state, or zipcode) and click 'Search'
 </div>
 <ng-template #hotelList>
-Has some hotels
+  <nz-pagination [nzPageIndex]="metaInfo.page" [nzTotal]="totalRecordCount"
+                 (nzPageIndexChange)="emitPageChangedEvent($event)"
+                 [nzPageSize]="pageSize" [nzShowTotal]="totalTemplate"></nz-pagination>
+  <ng-template #totalTemplate let-total> Total {{ total }} items</ng-template>
 </ng-template>
 

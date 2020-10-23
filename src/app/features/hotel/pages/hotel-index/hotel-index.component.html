@@ -11,7 +11,8 @@
     </div>
     <div nz-row class="result-list-container" [nzGutter]="8">
       <div nz-col [nzSpan]="6">
-        <app-hotel-list [hotels]="hotelList$ | async" [metaInfo]="hotelMeta$ | async"></app-hotel-list>
+        <app-hotel-list [hotels]="hotelList$ | async" [metaInfo]="hotelMeta$ | async"
+                        (pageChanged)="getNewPageHotelList($event)"></app-hotel-list>
       </div>
       <div nz-col [nzSpan]="18">
         <agm-map></agm-map>

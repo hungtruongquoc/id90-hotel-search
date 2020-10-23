@@ -47,15 +47,15 @@ export const selectHotelListMeta = (state: any) => {
 
 // Actions
 export const getAllHotels = createAction(GET_ALL_HOTEL, props<HotelListParams>());
-export const updateAirlineList = createAction(UPDATE_HOTEL_LIST, props<{ hotels: HotelModel[] }>());
-export const updateAirlineListAndMetaInfo = createAction(UPDATE_HOTEL_LIST_AND_META, props<{ hotels: HotelModel[] }>());
+export const updateHotelListAction = createAction(UPDATE_HOTEL_LIST, props<{ hotels: HotelModel[] }>());
+export const updateHotelListAndMetaInfo = createAction(UPDATE_HOTEL_LIST_AND_META, props<{ hotels: HotelModel[] }>());
 
 // Reducer
 export const hotelReducer = createReducer(initialState,
-  on(updateAirlineList, (state, action: HotelAction) => {
+  on(updateHotelListAction, (state, action: HotelAction) => {
     return {...state, hotels: [...action.hotels]};
   }),
-  on(updateAirlineListAndMetaInfo, (state, action: HotelAction) => {
+  on(updateHotelListAndMetaInfo, (state, action: HotelAction) => {
     debugger;
     return {...state, hotels: [...action.hotels], metaInfo: {...action.meta}};
   }),

@@ -11,6 +11,8 @@ import {GuestSelectComponent, HotelFilterComponent} from '../../@ui';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {AgmCoreModule} from '@agm/core';
 import {HotelListComponent} from '../../@ui/hotel-list/hotel-list.component';
+import {NzTableModule} from 'ng-zorro-antd/table';
+import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 // import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
@@ -25,6 +27,8 @@ import {HotelListComponent} from '../../@ui/hotel-list/hotel-list.component';
     FormsModule,
     NzButtonModule,
     AgmCoreModule,
+    NzTableModule,
+    NzPaginationModule
     // AgmCoreModule.forRoot({apiKey: 'AIzaSyDJcDQhLYPK-ewnnEA3j9FsLN9Ae5cRhhg'})
   ]
 })
