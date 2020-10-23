@@ -21,6 +21,9 @@
           <agm-marker *ngFor="let hotel of (hotelList$ | async)" (markerClick)="highlightHotel($event)"
                       [latitude]="hotel.location.latitude" [label]="selectedHotel === hotel.id ? hotel.name : null"
                       [longitude]="hotel.location.longitude" [title]="[hotel.name, hotel.id].join(';')">
+            <agm-info-window [disableAutoPan]="true" [isOpen]="hotel.id === selectedHotel">
+              <img [src]="hotel.image" *ngIf="hotel.id === selectedHotel">
+            </agm-info-window>
           </agm-marker>
         </agm-map>
       </div>
