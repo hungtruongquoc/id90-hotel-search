@@ -3,7 +3,7 @@
 </div>
 <ng-template #hotelList>
   <div class="list-container" style="height: 500px; overflow-y: auto">
-    <nz-list nzItemLayout="horizontal">
+    <nz-list nzItemLayout="horizontal" #hotelDomList>
       <nz-list-item *ngFor="let hotel of hotels" [ngClass]="{'highlighted': hotel.id === highlightedHotel }">
         <nz-space nzSize="middle">
           <nz-space-item>
